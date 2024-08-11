@@ -25,6 +25,8 @@ analyzeBtn.addEventListener("click", async () => {
 
   const data = await response.json();
   console.log(data);
+
+  //   console.log(data.data.readResult.blocks[0].lines);
   showResult(data, file);
   loader.classList.add("hidden");
 });
@@ -38,13 +40,57 @@ const showResult = (data, file) => {
             <div>Size</div>
             <div>Type</div>
             <div>Modified on</div>
+            <div>Height</div>
+            <div>Width</div>
         </div>
-        <div class='values'>
+        <div class='values font-normal'>
             <div>${file.name}</div>
             <div>${file.size} bytes</div>
             <div>${file.type}</div>
             <div>${file.lastModifiedDate}</div>
+            <div>${data.data.metadata.height}</div>
+            <div>${data.data.metadata.width}</div>
         </div>
     </div>
+  `;
+
+  document.getElementById("imageDetails").innerHTML = `
+    <tr class="border-b-2 border-dashed border-b-white my-5">
+        <td class="font-semibold pr-4 py-2">Analysis result</td>
+        <td><span class="text-slate-800 px-2 py-1 bg-white rounded-sm">${
+          data.data.captionResult.text
+        }</span></td>
+    </tr>
+    
+    <tr class="border-b-2 border-dashed border-b-white my-5 ">
+        <td class="font-semibold pr-4 py-2">Dense analysis result</td>
+        <td><span class="flex gap-2 flex-wrap">${data.data.denseCaptionsResult.values
+          .map((v) => {
+            return `<span class="text-slate-800 px-2 py-1 bg-white rounded-sm">${v.text}</span>`;
+          })
+          .join("")}</span></td>
+    </tr>
+
+     <tr class="border-b-2 border-dashed border-b-white ">
+        <td class="font-semibold pr-4 py-2 ">Text analysis result</td>
+        <td><span class="flex gap-2 flex-wrap ">${
+          data.data.readResult.blocks[0]
+            ? data.data.readResult.blocks[0].lines
+                .map((v) => {
+                  return `<span class="text-slate-800 px-2 py-1 bg-white rounded-sm">${v.text}</span>`;
+                })
+                .join("")
+            : `<span class="text-slate-800 px-2 py-1 bg-slate-400 rounded-sm">Nothing found</span>`
+        }</span></td>
+    </tr>
+
+    <tr class="border-b-2 border-dashed border-b-white  ">
+        <td class="font-semibold pr-4 py-2">People found</td>
+        <td> <span class="text-slate-800 px-2 py-1 bg-white rounded-sm ">${
+          data.data.peopleResult.values.length
+        } </span>
+        </td>
+    </tr>
+  
   `;
 };
