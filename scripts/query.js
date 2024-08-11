@@ -91,6 +91,19 @@ const showResult = (data, file) => {
         } </span>
         </td>
     </tr>
+
+     <tr class="border-b-2 border-dashed border-b-white ">
+        <td class="font-semibold pr-4 py-2 ">Tags result</td>
+        <td><span class="flex gap-2 flex-wrap ">${
+          data.data.tagsResult.values
+            ? data.data.tagsResult.values
+                .map((v) => {
+                  return `<span class="text-slate-800 px-2 py-1 bg-white rounded-sm">${v.name}</span>`;
+                })
+                .join("")
+            : `<span class="text-slate-800 px-2 py-1 bg-slate-400 rounded-sm">Nothing found</span>`
+        }</span></td>
+    </tr>
   
   `;
 };
