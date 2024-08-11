@@ -1,0 +1,44 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Image analyzer</title>
+  </head>
+  <body class="bg-slate-900 text-white">
+    <div class="flex gap-10 items-center justify-center">
+      <div class="flex flex-col items-center justify-center mt-10">
+        <label
+          for="file-upload"
+          class="cursor-pointer border-2 border-white hover:bg-slate-100 hover:text-black transition-all ease-in-out text-white font-bold py-2 px-4 rounded"
+        >
+          Select File
+        </label>
+        <input id="file-upload" type="file" class="sr-only" />
+      </div>
+      <div class="flex flex-col items-center justify-center mt-10">
+        <button
+          id="analyzeBtn"
+          class="border-2 border-white hover:bg-slate-100 hover:text-black transition-all ease-in-out text-white font-bold py-2 px-4 rounded hidden"
+        >
+          Analyze
+        </button>
+      </div>
+    </div>
+    <div class="imagePreview flex flex-col justify-center items-center mt-4">
+      <img src="" id="preview" alt="" class="w-48 hidden" />
+      <span id="file-name" class="my-4 font-bold hidden">No file selected</span>
+    </div>
+    <div
+      class="loading flex flex-col items-center justify-center hidden"
+      id="loader"
+    >
+      <div class="loader font-bold flex flex-col gap-2">
+        <img src="./assets/search.svg" class="h-10 animate-ping" alt="" />
+        Analyzing the image. This may take long in case of a detailed image.
+      </div>
+    </div>
+  </body>
+  <script src="./scripts/fileNameController.js"></script>
+  <script src="./scripts/query.js"></script>
+</html>
