@@ -29,7 +29,7 @@ analyzeBtn.addEventListener("click", async () => {
   loader.classList.remove("hidden");
 
   const response = await fetch(
-    "http://image-analyzer--lyt6q4a.whitetree-ac90122e.australiaeast.azurecontainerapps.io/",
+    "https://image-analyzer--lyt6q4a.whitetree-ac90122e.australiaeast.azurecontainerapps.io/",
     {
       method: "POST",
       body: formData,
