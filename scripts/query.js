@@ -10,6 +10,21 @@ analyzeBtn.addEventListener("click", async () => {
   const formData = new FormData();
   formData.append("image", file);
 
+  if (!file.type.startsWith("image/")) {
+    alert("Please select an image file.");
+    return;
+  }
+
+  // Extract the file extension
+  const allowedExtensions = ["jpg", "jpeg", "png"];
+  const fileExtension = file.name.split(".").pop().toLowerCase();
+
+  // Check if the file extension is allowed
+  if (!allowedExtensions.includes(fileExtension)) {
+    alert("Please select a .jpg, .jpeg, or .png file.");
+    return;
+  }
+
   analyzeBtn.disabled = true;
   loader.classList.remove("hidden");
 
@@ -27,8 +42,13 @@ analyzeBtn.addEventListener("click", async () => {
   console.log(data);
 
   //   console.log(data.data.readResult.blocks[0].lines);
-  showResult(data, file);
-  loader.classList.add("hidden");
+  if (response.ok) {
+    showResult(data, file);
+    loader.classList.add("hidden");
+  } else {
+    alert("An error occurred. Please try again later.");
+    loader.classList.add("hidden");
+  }
 });
 
 const showResult = (data, file) => {
