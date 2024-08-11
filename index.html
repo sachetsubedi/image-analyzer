@@ -5,7 +5,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Image analyzer</title>
   </head>
-  <body class="bg-slate-900 text-white">
+  <body class="bg-slate-900 text-white font-bold">
+    <h1 class="header text-4xl m-2 font-bold">Image analyzer</h1>
     <div class="flex gap-10 items-center justify-center">
       <div class="flex flex-col items-center justify-center mt-10">
         <label
@@ -35,7 +36,15 @@
     >
       <div class="loader font-bold flex flex-col gap-2">
         <img src="./assets/search.svg" class="h-10 animate-ping" alt="" />
-        Analyzing the image. This may take long in case of a detailed image.
+        Analyzing the image.... This may take long in case of a detailed image.
+      </div>
+    </div>
+    <div id="results" class="border-2 border-white mx-5 p-5 rounded-md">
+      <!-- Image MIME -->
+      <div>
+        <div class="">Image details</div>
+        <hr />
+        <div id="imageMIME"></div>
       </div>
     </div>
   </body>

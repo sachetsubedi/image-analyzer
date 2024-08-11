@@ -6,6 +6,7 @@ analyzeBtn.addEventListener("click", async () => {
     return alert("Please select a file");
   }
   const file = files[0];
+  console.log(file);
   const formData = new FormData();
   formData.append("image", file);
 
@@ -24,5 +25,26 @@ analyzeBtn.addEventListener("click", async () => {
 
   const data = await response.json();
   console.log(data);
+  showResult(data, file);
   loader.classList.add("hidden");
 });
+
+const showResult = (data, file) => {
+  const imageMIME = document.getElementById("imageMIME");
+  imageMIME.innerHTML = `
+    <div class="  flex gap-5">
+        <div class='keys font-semibold'>
+            <div>Name</div>
+            <div>Size</div>
+            <div>Type</div>
+            <div>Modified on</div>
+        </div>
+        <div class='values'>
+            <div>${file.name}</div>
+            <div>${file.size} bytes</div>
+            <div>${file.type}</div>
+            <div>${file.lastModifiedDate}</div>
+        </div>
+    </div>
+  `;
+};
