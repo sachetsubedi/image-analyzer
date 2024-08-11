@@ -52,6 +52,7 @@ analyzeBtn.addEventListener("click", async () => {
 });
 
 const showResult = (data, file) => {
+  document.getElementById("results").classList.remove("hidden");
   const imageMIME = document.getElementById("imageMIME");
   imageMIME.innerHTML = `
     <div class="  flex gap-5">
