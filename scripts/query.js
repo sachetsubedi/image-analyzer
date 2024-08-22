@@ -28,13 +28,10 @@ analyzeBtn.addEventListener("click", async () => {
   analyzeBtn.disabled = true;
   loader.classList.remove("hidden");
 
-  const response = await fetch(
-    "https://image-analyzer-v2.whitetree-ac90122e.australiaeast.azurecontainerapps.io",
-    {
-      method: "POST",
-      body: formData,
-    }
-  );
+  const response = await fetch("https://image-analyzer-backend.vercel.app/", {
+    method: "POST",
+    body: formData,
+  });
 
   analyzeBtn.disabled = false;
 
