@@ -37,6 +37,11 @@ analyzeBtn.addEventListener("click", async () => {
 
   const data = await response.json();
   console.log(data);
+  if (response.status === 500) {
+    alert("An error occurred. Please try again later.");
+    loader.classList.add("hidden");
+    return;
+  }
 
   //   console.log(data.data.readResult.blocks[0].lines);
   if (response.ok) {
